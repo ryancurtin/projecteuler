@@ -4,15 +4,19 @@
 # 
 # Answer: 9110846700
 
-numbersarray = []
-i = 1
-while i < 1001
-  numbersarray.push(i**i)
-  i +=1
+def last_ten_digits(n)
+  result = []
+  (1..n).to_a.each do |x|
+    num = (x**x).to_s
+    if num.length <= 10
+      result << num.to_i
+    else
+      result << num[-10..-1].to_i
+    end
   end
 
-sum = numbersarray.inject(:+)
+  sum = result.inject(:+)
+  last_ten = sum.to_s.length > 10 ? sum.to_s[-10..-1].to_i : sum
+end
 
-digits = sum.to_s.chars.to_a
-
-puts digits.to_s[-10..-1]
+last_ten_digits(1000)
